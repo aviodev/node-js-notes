@@ -43,14 +43,16 @@ Node.js is one of the most popular runtime environments in the world, known for 
 ---
 ## **Questions**
 
-1. **What is Node.js?**
+## 1. What is Node.js?
+### Answer:
 Node.js is an open-source runtime environment that allows you to run JavaScript on the server, not just in the browser. Think of it like this: normally, JavaScript is used to make web pages interactive on the client side, but with Node.js, you can use the same language to handle backend tasks like managing databases, handling APIs, and building servers.
 
 *Example for clarity:*
 Imagine you're building a food delivery app. The app needs to show the menu to users, take orders, and process payments. The frontend (what users see) might use JavaScript in the browser to make the page interactive. Node.js works on the backend to fetch menu data from a database, process the orders, and send updates to the delivery person in real time—all using JavaScript.
 
 
-2. **Difference between Node.js and JavaScript**  
+## 2. Difference between Node.js and JavaScrip?
+### Answer: 
 
 | **Node.js**                            | **JavaScript**                           |  
 |----------------------------------------|------------------------------------------|  
@@ -65,7 +67,8 @@ Imagine you're building a food delivery app. The app needs to show the menu to u
 - **Node.js:** Processes your login data on the server, checks the database, and sends back a response.  
 - **JavaScript:** Validates your login form in the browser before sending it to the server.
 
-3. **Is Node.js single-threaded?**  
+## 3. Is Node.js single-threaded?
+### Answer:   
 
 Yes, Node.js is single-threaded, but it uses an event-driven, non-blocking model to handle multiple tasks efficiently.  
 
