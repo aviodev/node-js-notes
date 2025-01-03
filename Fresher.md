@@ -12,7 +12,7 @@ Node.js is one of the most popular runtime environments in the world, known for 
 3. [Is Node.js single-threaded?](#3-is-node.js-single-threaded)
 4. [What is event-loop in Node.js?](#4-what-is-event-loop-in-nodejs)
 5. [What kind of API function is supported by Node.js?](#4-what-kind-of-api-function-is-supported-by-node.js)
-5. [What is the difference between Synchronous and Asynchronous functions?](#5-what-is-the-difference-between-synchronous-and-asynchronous-functions)
+6. [What is the difference between Synchronous and Asynchronous functions?](#5-what-is-the-difference-between-synchronous-and-asynchronous-functions)
 6. [What is a module in Node.js?](#6-what-is-a-module-in-node.js)
 7. [What is npm and its advantages?](#7-what-is-npm-and-its-advantages)
 8. [What is middleware?](#8-what-is-middleware)
@@ -92,6 +92,9 @@ c. **Non-Blocking I/O:**
 
 In this way, Node.js appears to handle multiple tasks at once, even though it's single-threaded.
 
+
+---
+
 ## 4. What is event-loop in Node.js?
 ### Answer:   
 
@@ -137,11 +140,13 @@ The event loop allows Node.js to:
   
 For example, a web server built with Node.js can serve thousands of users simultaneously without waiting for one user's request to complete before starting another.
 
+
+---
+
 ## 5. What kind of API function is supported by Node.js?
 ### Answer:   
 Node.js supports various types of API functions, which can be broadly categorized based on their behavior and purpose. Here's a breakdown:
 
----
 
 #### **a. Asynchronous, Non-blocking APIs**
 - These are the hallmark of Node.js.
@@ -159,7 +164,6 @@ fs.readFile('example.txt', 'utf8', (err, data) => {
 ```
 - `fs.readFile` is non-blocking, so other code can run while the file is being read.
 
----
 
 #### **b. Synchronous, Blocking APIs**
 - These APIs block the execution of further code until the operation is completed.
@@ -281,4 +285,55 @@ Node.js supports a wide range of APIs, including:
 - **Synchronous APIs** (for specific use cases)
 - **File, Network, Database, Stream, and Cryptographic APIs**
 
-Would you like examples of a specific type of API in more detail?
+
+
+## 6. What is the difference between Synchronous and Asynchronous functions?
+### Answer: 
+
+### **Differences Between Synchronous and Asynchronous Functions**
+
+| **Aspect**           | **Synchronous**                                  | **Asynchronous**                                |
+|-----------------------|------------------------------------------------|------------------------------------------------|
+| **Execution**         | Tasks execute one after another.               | Tasks run in the background, allowing other code to execute. |
+| **Blocking**          | Blocks the main thread until the task finishes. | Does not block the main thread; other code continues. |
+| **Performance**       | Slower for time-consuming tasks.                | Efficient for handling tasks like I/O, network requests, etc. |
+| **Use Case**          | Simple, short, or sequential tasks.             | File I/O, API calls, database queries. |
+| **Error Handling**    | Errors are thrown immediately.                  | Errors are handled in callbacks, promises, or `try...catch` with `async/await`. |
+
+---
+
+### **Examples**
+
+#### **Synchronous Example:**
+```javascript
+const fs = require('fs');
+
+// Blocking operation
+const data = fs.readFileSync('example.txt', 'utf8');
+console.log(data);
+console.log('This happens after the file is read.');
+```
+- Output (Sequential):
+  ```
+  File content...
+  This happens after the file is read.
+  ```
+
+#### **Asynchronous Example:**
+```javascript
+const fs = require('fs');
+
+// Non-blocking operation
+fs.readFile('example.txt', 'utf8', (err, data) => {
+  if (err) throw err;
+  console.log(data); // Executes later
+});
+console.log('This happens first.');
+```
+- Output (Non-blocking):
+  ```
+  This happens first.
+  File content...
+  ```
+
+---
