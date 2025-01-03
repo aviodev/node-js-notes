@@ -90,3 +90,51 @@ c. **Non-Blocking I/O:**
 - While the assistants work, the chef starts preparing the next dish. Once the assistants finish, they hand over the ingredients to the chef, who then completes the dish.  
 
 In this way, Node.js appears to handle multiple tasks at once, even though it's single-threaded.
+
+## 4. What is event-loop in Node.js?
+### Answer:   
+
+The event loop is a core part of Node.js. It handles all asynchronous operations, like reading files, making network requests, or working with timers. Since Node.js is single-threaded, the event loop ensures that tasks don't block the main thread, enabling Node.js to handle many operations simultaneously.
+
+### **How It Works (Simple Terms):**
+
+1. **Node.js starts your code.**
+   - When you run a program, Node.js executes your code line by line.
+
+2. **Async tasks are offloaded.**
+   - Tasks like reading a file or making a network request are sent to system threads or APIs.
+
+3. **The event loop checks for completed tasks.**
+   - Once an async task finishes, the event loop checks if there's a callback or a task waiting to run.
+
+4. **Callbacks are executed.**
+   - If a task is ready, its callback is executed in the main thread.
+
+---
+
+### **Basic Example of Event Loop in Action**
+
+```javascript
+console.log('Start'); // 1. Runs first
+
+setTimeout(() => {
+  console.log('Timer completed'); // 4. Runs after 2 seconds
+}, 2000);
+
+console.log('End'); // 2. Runs second
+```
+
+#### **What Happens Here:**
+1. `console.log('Start')` runs immediately.
+2. The `setTimeout` schedules a task to run after 2 seconds and hands it to the event loop.
+3. `console.log('End')` runs immediately.
+4. After 2 seconds, the event loop detects the timer task is ready, so it runs its callback.
+
+---
+
+### **Why Is It Useful?**
+The event loop allows Node.js to:
+- Handle many requests at once.
+- Stay fast and efficient even with heavy workloads.
+  
+For example, a web server built with Node.js can serve thousands of users simultaneously without waiting for one user's request to complete before starting another.
